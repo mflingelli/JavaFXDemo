@@ -7,18 +7,22 @@ Diese kann auf folgender Webseite heruntergeladen werden: [https://gluonhq.com/p
 
 Die Integration von JavaFX und IntelliJ ist hier zu finden: [https://openjfx.io/openjfx-docs/](https://openjfx.io/openjfx-docs/)
 
-Der Pfad zur OpenFX-Installation mus in den Run/Debug-Konfigurationen angegeben werden:
+Der Pfad zur OpenFX-Installation mus in den Run/Debug-Konfigurationen unter den VM-Optionen angegeben werden:
+
+Unter **Modify Options** muss der Eintrag **Add VM options** ausgewählt werden:
+
+![](doc/Run-Configuration-VM-Options.png)
 
 ![](doc/Run-Configuration.png)
 
-Die vollständige Angabe lautet:
+Die vollständige Angabe lautet beispielsweise:
 
 ```
 --module-path "C:\Software\javafx-sdk-21.0.4\lib" --add-modules javafx.controls
 ```
 
 Die OpenFX-Installation befindet sich im Ordner ```C:\Software\javafx-sdk-21.0.4\lib```. Da
-auch das Modul ```javafx.controls``` verwendet werden soll, ist dieses auch anzugeben.
+auch das Modul ```javafx.controls``` verwendet werden soll, ist dieses anzugeben.
 
 ## JavaFX controls
 

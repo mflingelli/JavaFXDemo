@@ -1,8 +1,6 @@
 package de.flingelli.training.javafxdemo;
 
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -36,14 +34,11 @@ public class HelloApplication extends Application {
 
     private Button createSayHelloButton(String title, TextField textField, Label label) {
         Button button = new Button(title);
-        button.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                if (textField.getText().isEmpty()) {
-                    label.setText(label.getText() + "\nHallo unbekannter Nutzer!");
-                } else {
-                    label.setText(label.getText() + "\nHallo " + textField.getText() + "!");
-                }
+        button.setOnAction(actionEvent -> {
+            if (textField.getText().isEmpty()) {
+                label.setText(label.getText() + "\nHallo unbekannter Nutzer!");
+            } else {
+                label.setText(label.getText() + "\nHallo " + textField.getText() + "!");
             }
         });
         return button;
