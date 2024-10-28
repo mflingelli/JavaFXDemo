@@ -1,4 +1,5 @@
 # JavaFX Demo
+![Build-Status](https://github.com/mflingelli/JavaFXDemo/actions/workflows/maven.yml/badge.svg)
 
 Damit diese Anwendung ausgeführt werden kann, muss die OpenJX-Bibliothek zur Verfügung stehen.
 Diese kann auf folgender Webseite heruntergeladen werden: [https://gluonhq.com/products/javafx/](https://gluonhq.com/products/javafx/)
