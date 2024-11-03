@@ -17,15 +17,15 @@ public class HelloApplication extends Application {
         GridPane gridPane = new GridPane(3, 1);
         borderPane.setTop(gridPane);
 
-        gridPane.add(new Label("Dein Name: "), 0, 1);
+        gridPane.add(new Label("Dein Name: "), 0, 0);
 
         TextField textField = new TextField("");
-        gridPane.add(textField, 1, 1);
+        gridPane.add(textField, 1, 0);
 
         Label display = new Label();
         borderPane.setCenter(display);
 
-        gridPane.add(createSayHelloButton("Sage hallo!", textField, display), 2,1 );
+        gridPane.add(createSayHelloButton("_Sage hallo!", textField, display), 2,0 );
         Scene scene = new Scene(borderPane, 600, 200);
         stage.setTitle("JavaFX Demo");
         stage.setScene(scene);
@@ -34,6 +34,7 @@ public class HelloApplication extends Application {
 
     private Button createSayHelloButton(String title, TextField textField, Label label) {
         Button button = new Button(title);
+        button.setMnemonicParsing(true);
         button.setOnAction(actionEvent -> {
             if (textField.getText().isEmpty()) {
                 label.setText(label.getText() + "\nHallo unbekannter Nutzer!");
@@ -45,6 +46,6 @@ public class HelloApplication extends Application {
     }
 
     public static void main(String[] args) {
-        launch();
+        launch(args);
     }
 }
