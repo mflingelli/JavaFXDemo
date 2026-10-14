@@ -20,8 +20,8 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
-      - name: Setup NSIS Compiler
-        uses: nsis-dev/setup-nsis@v3
+      - name: Install NSIS via Chocolatey
+        run: choco install nsis -y
 
       - name: Build Application and Installer with Maven
         run: mvn -B package -PInstaller --file pom.xml
