@@ -15,6 +15,7 @@
         <application.version>1.0.0</application.version>
         <maven.compiler.release>21</maven.compiler.release>
         <javafx.version>21</javafx.version>
+        <nsisPath>makensis.exe</nsisPath>
     </properties>
 
     <developers>
@@ -105,6 +106,12 @@
 
     <profiles>
         <profile>
+            <id>mf</id>
+            <properties>
+                <nsisPath>C:\Program Files (x86)\NSIS\makensis.exe</nsisPath>
+            </properties>
+        </profile>
+        <profile>
             <id>Installer</id>
             <build>
                 <plugins>
@@ -120,7 +127,7 @@
                                     <goal>exec</goal>
                                 </goals>
                                 <configuration>
-                                    <executable>C:\Program Files (x86)\NSIS\makensis.exe</executable>
+                                    <executable>${nsisPath}</executable>
                                     <arguments>
                                         <argument>/DPROJECT_DIR=${basedir}</argument>
                                         <argument>${basedir}/src/main/nsis/setup.nsi</argument>
