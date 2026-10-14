@@ -20,8 +20,8 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
-      - name: Install NSIS Compiler
-        uses: negrutiu/nsis-install@v1.1.0
+      - name: Setup NSIS Compiler
+        uses: nsis-dev/setup-nsis@v3
 
       - name: Build Application and Installer with Maven
         run: mvn -B package -PInstaller --file pom.xml
