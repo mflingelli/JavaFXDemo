@@ -20,8 +20,20 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
-      - name: Install NSIS via Chocolatey
-        run: choco install nsis -y
+      - name: Install NSIS via Chocolatey and update PATH
+        shell: powershell
+        run: |
+          choco install nsis -y
+          $nsisExe = Get-Command makensis.exe -ErrorAction SilentlyContinue
+          if ($nsisExe) {
+           $nsisPath = Split-Path $nsisExe.Path
+          } else {
+           if (Test-Path "C:\Program Files (x86)\NSIS") { $nsisPath = "C:\Program Files (x86)\NSIS" }
+           elseif (Test-Path "C:\Program Files\NSIS") { $nsisPath = "C:\Program Files\NSIS" }
+           else { $nsisPath = "C:\ProgramData\chocolatey\bin" }
+          }
+          Write-Output "Füge NSIS-Pfad zu GITHUB_PATH hinzu: $nsisPath"
+          echo "$nsisPath" >> $env:GITHUB_PATH
 
       - name: Build Application and Installer with Maven
         run: mvn -B package -PInstaller --file pom.xml
