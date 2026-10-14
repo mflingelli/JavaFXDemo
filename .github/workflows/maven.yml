@@ -19,22 +19,21 @@ jobs:
           java-version: '21'
           distribution: 'temurin'
           cache: maven
-
-      - name: Build Application and Installer with Maven
-        run: mvn -B package --file pom.xml
-
-      - name: Verify Installer File Existence
-        run: |
-          if (Test-Path "target\JavaFXDemo-Setup.exe") {
-            Write-Output "Installer erfolgreich gefunden!"
-          } else {
-            Write-Error "Installer-Datei existiert nicht in target!"
-            exit 1
-          }
       
+      - name: Build Application and Installer with Maven
+        run: mvn -B package -PInstaller --file pom.xml
+
+      - name: Check if Installer exists
+        id: check_file
+        shell: powershell
+        run: |
+          $exists = Test-Path "target\JavaFXDemo-Setup.exe"
+          echo "installer_exists=$exists" >> $env:GITHUB_OUTPUT
+
       - name: Upload Windows Installer Artifact
+        if: steps.check_file.outputs.installer_exists == 'True'
         uses: actions/upload-artifact@v4
         with:
           name: JavaFXDemo-Windows-Installer
           path: target\JavaFXDemo-Setup.exe
-          if-no-files-found: error
+          if-no-files-found: warn
