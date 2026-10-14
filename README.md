@@ -22,8 +22,8 @@ Die vollständige Angabe lautet beispielsweise:
 --module-path "C:\Software\javafx-sdk-21.0.4\lib" --add-modules javafx.controls
 ```
 
-Die OpenFX-Installation befindet sich im Ordner ```C:\Software\javafx-sdk-21.0.4\lib```. Da
-auch das Modul ```javafx.controls``` verwendet werden soll, ist dieses anzugeben.
+Die OpenFX-Installation befindet sich im Ordner `C:\Software\javafx-sdk-21.0.4\lib`. Da
+auch das Modul `javafx.controls` verwendet werden soll, ist dieses anzugeben.
 
 ## JavaFX controls
 
@@ -32,3 +32,16 @@ Mehr Informationen dazu können auf deren Webseite abgerufen werden:
 
 * Homepage: [https://controlsfx.github.io/](https://controlsfx.github.io/)
 * GitHub: [https://github.com/controlsfx/controlsfx](https://github.com/controlsfx/controlsfx)
+
+## NSIS-Installer
+
+Damit das Bauen des Installers funktioniert, muss auf dem System [NSIS](https://nsis.sourceforge.io/Download) 
+(Nullsoft Scriptable Install System) installiert sein.
+
+Der Pfad zur Datei `makensis.exe` ist aktuell hartcodiert hinterlegt.
+
+Das Bauen des Installers ist im Profil `Installer` hinterlegt.
+
+Der folgende Screenshot zeigt die erste Seite des Installers:
+
+![NSIS-Installer](doc/NSIS-Installer.png)

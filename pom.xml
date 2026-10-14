@@ -12,7 +12,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <application.name>JavaFXDemo</application.name>
-        <application.version>${project.version}</application.version>
+        <application.version>1.0.0</application.version>
         <maven.compiler.release>21</maven.compiler.release>
         <javafx.version>21</javafx.version>
     </properties>
@@ -36,6 +36,7 @@
             <version>11.2.1</version>
         </dependency>
     </dependencies>
+
     <build>
         <plugins>
             <plugin>
@@ -43,10 +44,11 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.11.0</version>
             </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
-                <version>2.6</version>
+                <version>3.6.0</version> <!-- Update auf neuere Version empfohlen -->
                 <executions>
                     <execution>
                         <id>copy-dependencies</id>
@@ -67,21 +69,21 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
-                <version>2.3.2</version>
+                <version>3.3.0</version>
                 <configuration>
                     <finalName>${application.name}</finalName>
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
                             <classpathPrefix>./lib/</classpathPrefix>
-                            <mainClass>de.flingelli.training.javafxdemo.HelloApplication</mainClass>
+                            <mainClass>de.flingelli.training.javafxdemo.MainLauncher</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
             </plugin>
             <plugin>
                 <artifactId>maven-assembly-plugin</artifactId>
-                <version>2.4</version>
+                <version>3.6.0</version>
                 <executions>
                     <execution>
                         <id>create-zip</id>
@@ -100,6 +102,38 @@
             </plugin>
         </plugins>
     </build>
+
+    <profiles>
+        <profile>
+            <id>Installer</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>exec-maven-plugin</artifactId>
+                        <version>3.1.0</version>
+                        <executions>
+                            <execution>
+                                <id>build-nsis-installer</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>exec</goal>
+                                </goals>
+                                <configuration>
+                                    <executable>C:\Program Files (x86)\NSIS\makensis.exe</executable>
+                                    <arguments>
+                                        <argument>/DPROJECT_DIR=${basedir}</argument>
+                                        <argument>${basedir}/src/main/nsis/setup.nsi</argument>
+                                    </arguments>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
     <repositories>
         <repository>
             <id>maven_central</id>
