@@ -25,6 +25,12 @@ Die vollständige Angabe lautet beispielsweise:
 Die OpenFX-Installation befindet sich im Ordner `C:\Software\javafx-sdk-21.0.4\lib`. Da
 auch das Modul `javafx.controls` verwendet werden soll, ist dieses anzugeben.
 
+## Projektstruktur
+
+In der Projektstruktur (File -> Project Structure...) müssen noch die JavaFX-Bibliotheken eingebunden werden (Ordner `lib`).
+
+![Projektstruktur der Bibliotheken](doc/Project-Structure-Libraries.png)
+
 ## JavaFX controls
 
 Das GitHub-Projekt controlsfx stellt zusätzliche UI-Elemente zur Verfügung.
